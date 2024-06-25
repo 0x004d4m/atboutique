@@ -31,22 +31,6 @@ class CustomerCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb();
-        $this->crud->addColumn('language_id', [
-            'label' => "Language",
-            'type' => "select",
-            'name' => 'language_id',
-            'entity' => 'language',
-            'attribute' => "name",
-            'model' => 'Backpack\LangFileManager\app\Models\Language'
-        ]);
-        $this->crud->setColumnDetails('language_id', [
-            'label' => "Language",
-            'type' => "select",
-            'name' => 'language_id',
-            'entity' => 'language',
-            'attribute' => "name",
-            'model' => 'Backpack\LangFileManager\app\Models\Language'
-        ]);
         $this->crud->addColumn('country_id', [
             'label' => "Country",
             'type' => "select",
@@ -79,36 +63,12 @@ class CustomerCrudController extends CrudController
             'attribute' => "name",
             'model' => 'App\Models\State'
         ]);
-        $this->crud->addColumn('city_id', [
-            'label' => "City",
-            'type' => "select",
-            'name' => 'city_id',
-            'entity' => 'city',
-            'attribute' => "name",
-            'model' => 'App\Models\City'
-        ]);
-        $this->crud->setColumnDetails('city_id', [
-            'label' => "City",
-            'type' => "select",
-            'name' => 'city_id',
-            'entity' => 'city',
-            'attribute' => "name",
-            'model' => 'App\Models\City'
-        ]);
     }
 
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CustomerRequest::class);
         CRUD::setFromDb();
-        $this->crud->addField([
-            'label' => "Language",
-            'type' => "relationship",
-            'name' => 'language_id',
-            'entity' => 'language',
-            'attribute' => "name",
-            'model' => 'Backpack\LangFileManager\app\Models\Language'
-        ]);
         $this->crud->addField([
             'label' => "Country",
             'type' => "relationship",
@@ -124,14 +84,6 @@ class CustomerCrudController extends CrudController
             'entity' => 'state',
             'attribute' => "name",
             'model' => 'App\Models\State'
-        ]);
-        $this->crud->addField([
-            'label' => "City",
-            'type' => "relationship",
-            'name' => 'city_id',
-            'entity' => 'city',
-            'attribute' => "name",
-            'model' => 'App\Models\City'
         ]);
     }
 

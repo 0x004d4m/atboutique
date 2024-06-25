@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('title');
             $table->json('description');
+            $table->text('animation');
             $table->text('image');
             $table->timestamps();
             $table->softDeletes();

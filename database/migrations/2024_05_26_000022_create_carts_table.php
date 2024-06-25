@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('total_product_cost_price');
             $table->double('single_product_selling_price');
             $table->double('total_product_selling_price');
-            $table->unsignedBigInteger('session_id')->nullable();
+            $table->text('session_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->on('customers')->references('id');
             $table->unsignedBigInteger('product_id');

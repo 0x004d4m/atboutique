@@ -39,6 +39,14 @@ class SliderCrudController extends CrudController
         CRUD::setValidation(SliderRequest::class);
         CRUD::setFromDb();
         CRUD::field('image')->type('image');
+        CRUD::field([
+            'name'        => 'animation',
+            'label'       => "Animation",
+            'type'        => 'select_from_array',
+            'options'     => ["fadeInDown" => "fadeInDown", "fadeInUp" => "fadeInUp", "zoomIn" => "zoomIn", "rollIn" => "rollIn", "lightSpeedIn" => "lightSpeedIn", "slideInUp" => "slideInUp", "rotateInDownLeft" => "rotateInDownLeft", "rotateInUpRight" => "rotateInUpRight", "rotateIn" => "rotateIn"],
+            'allows_null' => false,
+            'default'     => 'one',
+        ]);
     }
 
     protected function setupUpdateOperation()

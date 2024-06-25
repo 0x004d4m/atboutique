@@ -38,16 +38,16 @@ class Cart extends Model
 
     public function size()
     {
-        return $this->belongsTo(Product::class, 'size_id', 'id');
+        return $this->belongsTo(Size::class, 'size_id', 'id');
     }
 
     public function color()
     {
-        return $this->belongsTo(Customer::class, 'color_id', 'id');
+        return $this->belongsTo(Color::class, 'color_id', 'id');
     }
 
     public function order()
     {
-        return $this->belongsTo(Product::class, 'order_id', 'id');
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 }

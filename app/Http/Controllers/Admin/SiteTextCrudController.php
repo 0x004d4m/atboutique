@@ -39,6 +39,7 @@ class SiteTextCrudController extends CrudController
         CRUD::setValidation(SiteTextRequest::class);
         CRUD::setFromDb();
         CRUD::field('image')->type('image');
+        CRUD::field('description')->type('CKEditor');
     }
 
     protected function setupUpdateOperation()

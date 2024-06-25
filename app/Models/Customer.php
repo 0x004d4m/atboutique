@@ -16,20 +16,16 @@ class Customer extends Model
         'first_name',
         'last_name',
         'email',
-        'language_id',
         'country_id',
         'state_id',
-        'city_id',
         'zip_code',
         'address',
         'phone',
         'password',
+        'verify_token',
+        'email_verified',
+        'forget_code',
     ];
-
-    public function language()
-    {
-        return $this->belongsTo(State::class, 'language_id', 'id');
-    }
 
     public function country()
     {
@@ -39,10 +35,5 @@ class Customer extends Model
     public function state()
     {
         return $this->belongsTo(State::class, 'state_id', 'id');
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(State::class, 'city_id', 'id');
     }
 }

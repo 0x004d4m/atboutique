@@ -16,7 +16,6 @@ class SiteTextRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
-            'image' => 'required',
         ];
     }
 }

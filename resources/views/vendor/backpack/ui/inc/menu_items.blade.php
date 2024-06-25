@@ -38,16 +38,13 @@
 </x-backpack::menu-dropdown>
 @endif
 
-@if(backpack_user()->can('View Countries') || backpack_user()->can('View States') || backpack_user()->can('View Cities') || backpack_user()->can('View Colors') || backpack_user()->can('View Sizes') || backpack_user()->can('View Categories') || backpack_user()->can('View Shipping Companies') || backpack_user()->can('View Order Statuses'))
+@if(backpack_user()->can('View Countries') || backpack_user()->can('View States') || backpack_user()->can('View Colors') || backpack_user()->can('View Sizes') || backpack_user()->can('View Categories') || backpack_user()->can('View Shipping Companies') || backpack_user()->can('View Order Statuses'))
 <x-backpack::menu-dropdown title="Settings" icon="la la-cogs">
     @if(backpack_user()->can('View Countries'))
         <x-backpack::menu-item title="Countries" icon="la la-city" :link="backpack_url('country')" />
     @endif
     @if(backpack_user()->can('View States'))
         <x-backpack::menu-item title="States" icon="la la-building" :link="backpack_url('state')" />
-    @endif
-    @if(backpack_user()->can('View Cities'))
-        <x-backpack::menu-item title="Cities" icon="la la-warehouse" :link="backpack_url('city')" />
     @endif
     @if(backpack_user()->can('View Colors'))
         <x-backpack::menu-item title="Colors" icon="la la-palette" :link="backpack_url('color')" />

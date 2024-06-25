@@ -17,7 +17,6 @@ class OrderRequest extends FormRequest
             'customer_id' => 'required|exists:customers,id',
             'country_id' => 'required|exists:countries,id',
             'state_id' => 'required|exists:states,id',
-            'city_id' => 'required|exists:cities,id',
             'zip_code' => 'required',
             'address' => 'required',
             'shipping_company_id' => 'required|exists:shipping_companies,id',

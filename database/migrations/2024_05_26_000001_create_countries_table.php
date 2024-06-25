@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->json('name');
+            $table->string('code');
             $table->string('country_code');
             $table->string('currency');
             $table->double('currency_to_usd');

@@ -20,8 +20,6 @@ return new class extends Migration
             $table->foreign('country_id')->on('countries')->references('id');
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->on('states')->references('id');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->on('cities')->references('id');
             $table->string('zip_code');
             $table->string('address');
 

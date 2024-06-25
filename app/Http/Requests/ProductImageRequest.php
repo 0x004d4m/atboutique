@@ -8,7 +8,7 @@ class ProductImageRequest extends FormRequest
 {
     public function authorize()
     {
-        return backpack_auth()->check() && backpack_user()->can('Manage Product Images');
+        return backpack_auth()->check() && backpack_user()->can('Manage Products');
     }
 
     public function rules()

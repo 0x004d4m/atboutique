@@ -15,6 +15,7 @@ class CountryRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'code' => 'required',
             'country_code' => 'required|integer',
             'currency' => 'required',
             'currency_to_usd' => 'required|numeric',

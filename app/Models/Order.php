@@ -16,7 +16,6 @@ class Order extends Model
         'customer_id',
         'country_id',
         'state_id',
-        'city_id',
         'zip_code',
         'address',
         'shipping_company_id',
@@ -39,11 +38,6 @@ class Order extends Model
     public function state()
     {
         return $this->belongsTo(State::class, 'state_id', 'id');
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(State::class, 'city_id', 'id');
     }
 
     public function shippingCompany()

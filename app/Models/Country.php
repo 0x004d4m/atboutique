@@ -18,6 +18,7 @@ class Country extends Model
     protected $table = 'countries';
     protected $fillable = [
         'name',
+        'code',
         'country_code',
         'currency',
         'currency_to_usd',
@@ -29,11 +30,6 @@ class Country extends Model
     public function states()
     {
         return $this->hasMany(State::class, 'country_id', 'id');
-    }
-
-    public function cities()
-    {
-        return $this->hasMany(City::class, 'country_id', 'id');
     }
 
     public function setFlagAttribute($value)

@@ -18,7 +18,6 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('country', 'CountryCrudController');
     Route::crud('state', 'StateCrudController');
-    Route::crud('city', 'CityCrudController');
     Route::crud('color', 'ColorCrudController');
     Route::crud('size', 'SizeCrudController');
     Route::crud('category', 'CategoryCrudController');

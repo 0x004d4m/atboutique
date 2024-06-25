@@ -80,22 +80,6 @@ class OrderCrudController extends CrudController
             'attribute' => "name",
             'model' => 'App\Models\State'
         ]);
-        $this->crud->addColumn('city_id',[
-            'label' => "City",
-            'type' => "relationship",
-            'name' => 'city_id',
-            'entity' => 'city',
-            'attribute' => "name",
-            'model' => 'App\Models\City'
-        ]);
-        $this->crud->setColumnDetails('city_id',[
-            'label' => "City",
-            'type' => "relationship",
-            'name' => 'city_id',
-            'entity' => 'city',
-            'attribute' => "name",
-            'model' => 'App\Models\City'
-        ]);
         $this->crud->addColumn('shipping_company_id',[
             'label' => "Shipping Company",
             'type' => "relationship",
@@ -174,14 +158,6 @@ class OrderCrudController extends CrudController
             'entity' => 'state',
             'attribute' => "name",
             'model' => 'App\Models\State'
-        ]);
-        $this->crud->addField([
-            'label' => "City",
-            'type' => "relationship",
-            'name' => 'city_id',
-            'entity' => 'city',
-            'attribute' => "name",
-            'model' => 'App\Models\City'
         ]);
         $this->crud->addField([
             'label' => "Shipping Company",
