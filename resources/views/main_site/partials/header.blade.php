@@ -39,7 +39,7 @@
 
                 <!-- Logo desktop -->
                 <a href="{{ url('/') }}" class="logo">
-                    <img src="{{ url('images/icons/logo-01.png') }}" alt="IMG-LOGO">
+                    <img src="{{ url('images/icons/logo.png') }}" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
@@ -82,7 +82,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="{{ url('/') }}"><img src="{{ url('images/icons/logo-01.png') }}" alt="IMG-LOGO"></a>
+            <a href="{{ url('/') }}"><img src="{{ url('images/icons/logo.png') }}" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
