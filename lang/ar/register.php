@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'title' => 'تسجيل',
+    'first_name' => 'الاسم الأول',
+    'last_name' => 'اسم العائلة',
+    'country_id' => 'الدولة',
+    'select_country' => 'اختر الدولة',
+    'state_id' => 'الولاية',
+    'select_state' => 'اختر الولاية',
+    'zip_code' => 'الرمز البريدي',
+    'address' => 'العنوان',
+    'phone' => 'الهاتف',
+    'email' => 'البريد الإلكتروني',
+    'password' => 'كلمة المرور',
+    'password_confirmation' => 'تأكيد كلمة المرور',
+    'register_button' => 'تسجيل',
+    'login_text' => 'هل لديك حساب بالفعل؟',
+    'login_link' => 'تسجيل الدخول',
+    'response_email_registered' => 'البريد الإلكتروني مسجل بالفعل',
+    'response_phone_registered' => 'رقم الهاتف مسجل بالفعل',
+    'response_password_not_confirmed' => 'كلمة المرور غير مؤكدة',
+    'response_welcome' => 'مرحبًا',
+    'response_welcome2' => 'يرجى التحقق من بريدك الإلكتروني للتفعيل، بعد ذلك قم بتسجيل الدخول للمتابعة',
+    'response_welcome3' => 'مرحبًا',
+    'response_welcome4' => 'يرجى تسجيل الدخول للمتابعة',
+    'response_general_error' => 'خطأ في التسجيل، يرجى المحاولة مرة أخرى',
+];

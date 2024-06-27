@@ -10,7 +10,7 @@
 
 @if(backpack_user()->can('View Translations'))
 <x-backpack::menu-dropdown title="Translations" icon="la la-globe">
-    <x-backpack::menu-dropdown-item title="Languages" icon="la la-flag-checkered" :link="backpack_url('language')" />
+    {{-- <x-backpack::menu-dropdown-item title="Languages" icon="la la-flag-checkered" :link="backpack_url('language')" /> --}}
     <x-backpack::menu-dropdown-item title="Site texts" icon="la la-language" :link="backpack_url('language/texts')" />
 </x-backpack::menu-dropdown>
 @endif
