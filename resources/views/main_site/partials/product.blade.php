@@ -23,7 +23,7 @@
             </div>
 
             <div class="flex-w flex-c-m m-tb-10">
-                <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter" id="Filters_Bar">
                     <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                     <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
                     {{ __('products.filter') }}
@@ -155,7 +155,7 @@
         </div>
 
         <div class="row isotope-grid">
-            @foreach (App\Models\Product::with(['images'])->get() as $Product)
+            @foreach (App\Models\Product::with(['images'])->filter(new App\Models\Filters\ProductFilters(request()))->get() as $Product)
                 <div
                     class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ str_replace(' ', '_', $Product->category->name) }}">
                     <!-- Block2 -->
@@ -194,12 +194,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-        <!-- Load more -->
-        <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="/products" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                {{ __('products.load_more') }}
-            </a>
         </div>
     </div>
 </section>
@@ -404,6 +398,7 @@
             });
         });
     </script>
+    {!! request()->has('sort')||request()->has('price') ? "<script>$('#Filters_Bar').click();</script>" : '' !!}
     {!! request()->has('search') ? "<script>$('#Search_Bar').click();</script>" : '' !!}
     {!! request()->has('category')
         ? "<script>$('#category_" . request()->get('category') . "').click();</script>"

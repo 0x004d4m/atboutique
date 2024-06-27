@@ -13,6 +13,7 @@ Route::group([
     Route::get('/contact', [HomeController::class, 'contact']);
     Route::get('/about', [HomeController::class, 'about']);
     Route::get('/products', [HomeController::class, 'products']);
+    Route::get('/products/{id}', [HomeController::class, 'product']);
     Route::post('/contactRequest', [HomeController::class, 'contactRequest']);
     Route::post('/addToNewsLetter', [HomeController::class, 'addToNewsLetter']);
     Route::get('/policy/{id}', [HomeController::class, 'policy']);

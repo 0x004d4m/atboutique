@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Filters\ProductFilters;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,5 +59,10 @@ class Product extends Model
                 $this->attributes[$attribute_name] = $value;
             }
         }
+    }
+
+    public function scopeFilter($query, ProductFilters $filters)
+    {
+        return $filters->apply($query);
     }
 }

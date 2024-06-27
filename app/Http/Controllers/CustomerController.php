@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ForgetMail;
 use App\Mail\RegisterMail;
+use App\Models\Cart;
 use App\Models\Customer;
 use Exception;
 use Illuminate\Http\Request;
@@ -39,6 +40,12 @@ class CustomerController extends Controller
             return redirect('/login')->with('error', __('login.response_check_email'));
         }
 
+        $Carts = Cart::where('session_id', Session::get('session_id'))->get();
+        foreach ($Carts as $Cart) {
+            $Cart->update([
+                'customer_id' => $Customer->id
+            ]);
+        }
         Session::put('customer_id', $Customer->id);
         return redirect('/products')->with('success', __('login.response_welcome').", $Customer->first_name $Customer->last_name");
     }
