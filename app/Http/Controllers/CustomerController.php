@@ -47,7 +47,7 @@ class CustomerController extends Controller
             ]);
         }
         Session::put('customer_id', $Customer->id);
-        return redirect('/products')->with('success', __('login.response_welcome').", $Customer->first_name $Customer->last_name");
+        return redirect('/products')->with('success', __('login.response_welcome') . ", $Customer->first_name $Customer->last_name");
     }
     public function registerView()
     {
@@ -96,7 +96,7 @@ class CustomerController extends Controller
 
             Mail::to($Customer->email)->send(new RegisterMail($Customer));
 
-            return redirect('/login')->with('success', __('register.response_welcome')." $Customer->first_name $Customer->last_name, ". __('register.response_welcome2'));
+            return redirect('/login')->with('success', __('register.response_welcome') . " $Customer->first_name $Customer->last_name, " . __('register.response_welcome2'));
         } catch (Exception $e) {
             Log::debug($e);
             return redirect('/register')->with('error', __('register.response_general_error'))->with('old', $request->input());
@@ -111,7 +111,7 @@ class CustomerController extends Controller
                 'email_verified' => 1
             ]);
 
-            return redirect('/login')->with('success', __('register.response_welcome3') . " $Customer->first_name $Customer-> last_name, " . __('register.response_welcome4'));
+            return redirect('/login')->with('success', __('register.response_welcome3') . " " . $Customer->first_name . " " . $Customer->last_name . " " . __('register.response_welcome4'));
         } catch (Exception $e) {
             Log::debug($e);
             return redirect('/register')->with('error', __('register.response_general_error'));
