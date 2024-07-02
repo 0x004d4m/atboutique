@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\ContactRequest;
+use App\Models\Filters\ProductFilters;
 use App\Models\NewsLetter;
 use App\Models\Product;
 use App\Models\SiteText;
@@ -33,10 +35,27 @@ class HomeController extends Controller
             'Text' => SiteText::where('id', $id)->first()
         ]);
     }
-    public function products()
+    public function products(Request $request)
     {
-        return view('products');
+        if ($request->ajax()) {
+            $products = Product::with(['images', 'category'])
+                ->filter(new ProductFilters($request))
+                ->paginate(12);
+
+            return response()->json([
+                'products' => view('main_site.partials.product_list', compact('products'))->render(),
+                'pagination' => view('main_site.partials.pagination', compact('products'))->render()
+            ]);
+        }
+
+        $categories = Category::all();
+        $products = Product::with(['images', 'category'])
+            ->filter(new ProductFilters($request))
+            ->paginate(12);
+
+        return view('products', compact('categories', 'products'));
     }
+
     public function about()
     {
         return view('about');

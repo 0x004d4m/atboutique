@@ -155,7 +155,7 @@
         </div>
 
         <div class="row isotope-grid">
-            @foreach (App\Models\Product::with(['images'])->filter(new App\Models\Filters\ProductFilters(request()))->get() as $Product)
+            @foreach ($products=App\Models\Product::with(['images'])->filter(new App\Models\Filters\ProductFilters(request()))->paginate(12) as $Product)
                 <div
                     class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ str_replace(' ', '_', $Product->category->name) }}">
                     <!-- Block2 -->
@@ -194,6 +194,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div id="paginationWrapper">
+            @include('main_site.partials.pagination', ['products' => $products])
         </div>
     </div>
 </section>

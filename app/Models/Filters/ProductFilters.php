@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductFilters extends QueryFilter
 {
+    public function category_id($value)
+    {
+        return $this->builder->where('category_id', $value);
+    }
     public function search($value)
     {
         return $this->builder->where('name', "LIKE", "%" . $value . "%")->orWhere('description', "LIKE", "%" . $value . "%");
