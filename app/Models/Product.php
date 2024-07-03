@@ -45,7 +45,10 @@ class Product extends Model
 
         // Handle cleared images
         $clearedImages = request()->input('clear_' . $attribute_name, []);
-        $existingImages = array_diff($existingImages, $clearedImages);
+        $remainingImages = array_diff($existingImages, $clearedImages);
+
+        // Check if there are new uploads
+        $newUploads = false;
 
         // If the value is an array, it means there are new files to upload
         if (is_array($value)) {
@@ -56,20 +59,23 @@ class Product extends Model
                     // Store the file and get its path
                     $filename = $file->store($destination_path, $disk);
                     $newImages[] = $filename;
+                    $newUploads = true;
                 } else {
                     // Add the existing file paths that are not cleared
                     $newImages[] = $file;
                 }
             }
-            // Merge new images with the remaining existing images
-            $allImages = array_merge($existingImages, $newImages);
-        } else {
-            // If no new files were uploaded, just use the existing images
-            $allImages = $existingImages;
-        }
 
-        // Save the images array as JSON in the database
-        $this->attributes[$attribute_name] = json_encode($allImages);
+            // If there are new uploads or cleared images, merge the arrays
+            if ($newUploads || !empty($clearedImages)) {
+                $allImages = array_merge($remainingImages, $newImages);
+                // Save the images array as JSON in the database
+                $this->attributes[$attribute_name] = json_encode($allImages);
+            }
+        } elseif (!empty($clearedImages)) {
+            // If there are cleared images but no new uploads, just save the remaining images
+            $this->attributes[$attribute_name] = json_encode($remainingImages);
+        }
     }
 
     // public function getImagesAttribute($value)
