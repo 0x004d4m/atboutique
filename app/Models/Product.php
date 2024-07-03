@@ -46,11 +46,13 @@ class Product extends Model
             $this->attributes[$attribute_name] = null;
         }
 
+        // If the images were erased
+        if ($value == []) {
+            $this->attributes[$attribute_name] = null;
+        }
+
         // If a file was uploaded
         if (is_array($value)) {
-            if(count($value)==0){
-                $this->attributes[$attribute_name] = null;
-            }
             $images = [];
             foreach ($value as $file) {
                 $filename = $file->store($destination_path, $disk);
