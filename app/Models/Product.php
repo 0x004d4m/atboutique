@@ -48,6 +48,9 @@ class Product extends Model
 
         // If a file was uploaded
         if (is_array($value)) {
+            if(count($value)==0){
+                $this->attributes[$attribute_name] = null;
+            }
             $images = [];
             foreach ($value as $file) {
                 $filename = $file->store($destination_path, $disk);
