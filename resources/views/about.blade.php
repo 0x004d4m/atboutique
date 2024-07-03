@@ -23,7 +23,7 @@
                         </h3>
 
                         <p class="stext-113 cl6 p-b-26">
-                            {{ $Story->description }}
+                            {!! $Story->description !!}
                         </p>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         </h3>
 
                         <p class="stext-113 cl6 p-b-26">
-                            {{ $Mission->description }}
+                            {!! $Mission->description !!}
                         </p>
                     </div>
                 </div>

@@ -38,7 +38,7 @@ class HomeController extends Controller
     public function products(Request $request)
     {
         if ($request->ajax()) {
-            $products = Product::with(['images', 'category'])
+            $products = Product::with(['category'])
                 ->filter(new ProductFilters($request))
                 ->paginate(12);
 
@@ -49,7 +49,7 @@ class HomeController extends Controller
         }
 
         $categories = Category::all();
-        $products = Product::with(['images', 'category'])
+        $products = Product::with(['category'])
             ->filter(new ProductFilters($request))
             ->paginate(12);
 

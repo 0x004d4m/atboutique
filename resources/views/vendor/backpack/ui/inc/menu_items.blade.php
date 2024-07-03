@@ -72,10 +72,6 @@
     <x-backpack::menu-item title="Products" icon="la la-shopping-cart" :link="backpack_url('product')" />
 @endif
 
-@if(backpack_user()->can('View Products'))
-    <x-backpack::menu-item title="Product images" icon="la la-image" :link="backpack_url('product-image')" />
-@endif
-
 @if(backpack_user()->can('View Customers'))
     <x-backpack::menu-item title="Customers" icon="la la-user" :link="backpack_url('customer')" />
 @endif

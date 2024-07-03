@@ -22,7 +22,6 @@ Route::group([
     Route::crud('size', 'SizeCrudController');
     Route::crud('category', 'CategoryCrudController');
     Route::crud('product', 'ProductCrudController');
-    Route::crud('product-image', 'ProductImageCrudController');
     Route::crud('coupon', 'CouponCrudController');
     Route::crud('slider', 'SliderCrudController');
     Route::crud('site-text', 'SiteTextCrudController');

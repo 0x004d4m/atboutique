@@ -47,7 +47,11 @@ class ProductCrudController extends CrudController
             'attribute' => "name",
             'model' => 'App\Models\Category'
         ]);
-        CRUD::column('main_image')->type('image');
+        $this->crud->addColumn([
+            'name' => 'images',
+            'label' => 'Images',
+            'type' => 'image',
+        ]);
     }
 
     protected function setupCreateOperation()
@@ -62,7 +66,13 @@ class ProductCrudController extends CrudController
             'attribute' => "name",
             'model' => 'App\Models\Category'
         ]);
-        CRUD::field('main_image')->type('image');
+        $this->crud->addField([
+            'name' => 'images',
+            'label' => 'Images',
+            'type' => 'upload_multiple',
+            'upload' => true,
+            'disk' => 'public',
+        ]);
     }
 
     protected function setupUpdateOperation()

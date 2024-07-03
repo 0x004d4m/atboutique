@@ -40,13 +40,13 @@ class ProductFilters extends QueryFilter
         if ($value == 2) { // popularity
             return $this->builder->leftJoin('carts', 'products.id', '=', 'carts.product_id')
             ->select('products.*', DB::raw('COUNT(carts.id) as popularity'))
-            ->groupBy('products.id', 'products.name', 'products.description', 'products.stock', 'products.cost_price', 'products.selling_price', 'products.category_id', 'products.main_image', 'products.created_at', 'products.updated_at', 'products.deleted_at')
+            ->groupBy('products.id', 'products.name', 'products.description', 'products.stock', 'products.cost_price', 'products.selling_price', 'products.category_id', 'products.images', 'products.created_at', 'products.updated_at', 'products.deleted_at')
             ->orderBy('popularity', 'desc');
         }
         if ($value == 3) { // average_rating
             return $this->builder->leftJoin('carts', 'products.id', '=', 'carts.product_id')
             ->select('products.*', DB::raw('AVG(carts.rate) as average_rating'))
-            ->groupBy('products.id', 'products.name', 'products.description', 'products.stock', 'products.cost_price', 'products.selling_price', 'products.category_id', 'products.main_image', 'products.created_at', 'products.updated_at', 'products.deleted_at')
+            ->groupBy('products.id', 'products.name', 'products.description', 'products.stock', 'products.cost_price', 'products.selling_price', 'products.category_id', 'products.images', 'products.created_at', 'products.updated_at', 'products.deleted_at')
             ->orderBy('average_rating', 'desc');
         }
         if ($value == 4) { // newness

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->double('selling_price')->default(0);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->on('categories')->references('id');
-            $table->text('main_image');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -8,8 +8,6 @@ use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
@@ -24,7 +22,7 @@ class Product extends Model
         'cost_price',
         'selling_price',
         'category_id',
-        'main_image',
+        'images',
     ];
     protected $translatable = [
         'name',
@@ -36,30 +34,33 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function images()
+    public function setImagesAttribute($value)
     {
-        return $this->hasMany(ProductImage::class, 'product_id', 'id');
-    }
+        $attribute_name = "images";
+        $disk = "public"; // Use your desired disk
+        $destination_path = "uploads/images"; // Your destination path
 
-    public function setMainImageAttribute($value)
-    {
-        $attribute_name = "main_image";
-        $destination_path = "public/uploads";
-
+        // If the images were erased
         if ($value == null) {
+            Storage::disk($disk)->delete($this->{$attribute_name});
             $this->attributes[$attribute_name] = null;
-        }else{
-            if (Str::startsWith($value, 'data:image')) {
-                $image = Image::make($value)->encode('png', 90);
-                $filename = md5($value . time()) . '.png';
-                Storage::put($destination_path . '/' . $filename, $image->stream());
-                $public_destination_path = Str::replaceFirst('public/', 'storage/', $destination_path);
-                $this->attributes[$attribute_name] = $public_destination_path . '/' . $filename;
-            }else{
-                $this->attributes[$attribute_name] = $value;
+        }
+
+        // If a file was uploaded
+        if (is_array($value)) {
+            $images = [];
+            foreach ($value as $file) {
+                $filename = $file->store($destination_path, $disk);
+                $images[] = $filename;
             }
+            $this->attributes[$attribute_name] = json_encode($images);
         }
     }
+
+    // public function getImagesAttribute($value)
+    // {
+    //     return json_decode($value);
+    // }
 
     public function scopeFilter($query, ProductFilters $filters)
     {

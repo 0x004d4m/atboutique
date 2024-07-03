@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
-use App\Models\ProductImage;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -270,12 +267,6 @@ class DatabaseSeeder extends Seeder
                 "image" => 'images/banner-03.jpg',
             ],
         ]);
-
-        Product::factory(16)->create()->each(function ($product) {
-            for ($i = 0; $i < 4; $i++) {
-                ProductImage::factory()->create(['product_id' => $product->id]);
-            }
-        });
 
         DB::table('coupons')->insert([
             [

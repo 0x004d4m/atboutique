@@ -155,14 +155,14 @@
         </div>
 
         <div class="row isotope-grid">
-            @foreach ($products=App\Models\Product::with(['images'])->filter(new App\Models\Filters\ProductFilters(request()))->paginate(12) as $Product)
+            @foreach ($products=App\Models\Product::filter(new App\Models\Filters\ProductFilters(request()))->whereNotNull('images')->paginate(12) as $Product)
                 <div
                     class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ str_replace(' ', '_', $Product->category->name) }}">
                     <!-- Block2 -->
                     <div class="block2">
                         <div onclick="viewProduct({{ json_encode($Product) }})"
                             class="block2-pic hov-img0 js-show-modal1">
-                            <img src="{{ url($Product->main_image) }}" alt="{{ $Product->name }}">
+                            <img src="{{ url('storage/'.json_decode($Product->images)[0]) }}" alt="{{ $Product->name }}">
                             <a onclick="viewProduct({{ json_encode($Product) }})"
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                 {{ __('products.quick_view') }}
@@ -302,25 +302,14 @@
                     <div class="slick3 gallery-lb" id="images"></div>
                 </div>
             `);
-            $('#images').append(`
-                <div class="item-slick3" data-thumb="${product.main_image}">
-                    <div class="wrap-pic-w pos-relative">
-                        <img src="${product.main_image}" alt="${product.name.{{ App::getLocale() }}}">
-                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                            href="${product.main_image}">
-                            <i class="fa fa-expand"></i>
-                        </a>
-                    </div>
-                </div>
-            `);
-            if (product.images && product.images.length > 0) {
-                product.images.forEach(image => {
+            if (JSON.parse(product.images) && JSON.parse(product.images).length > 0) {
+                JSON.parse(product.images).forEach(image => {
                     $('#images').append(`
-                        <div class="item-slick3" data-thumb="${image.image}">
+                        <div class="item-slick3" data-thumb="storage/${image}">
                             <div class="wrap-pic-w pos-relative">
-                                <img src="${image.image}" alt="${product.name.{{ App::getLocale() }}}">
+                                <img src="storage/${image}" alt="${product.name.{{ App::getLocale() }}}">
                                 <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                    href="${image.image}">
+                                    href="storage/${image}">
                                     <i class="fa fa-expand"></i>
                                 </a>
                             </div>

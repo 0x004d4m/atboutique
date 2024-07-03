@@ -298,25 +298,14 @@
                     <div class="slick3 gallery-lb" id="images"></div>
                 </div>
             `);
-            $('#images').append(`
-                <div class="item-slick3" data-thumb="${product.main_image}">
-                    <div class="wrap-pic-w pos-relative">
-                        <img src="${product.main_image}" alt="${product.name.{{ App::getLocale() }}}">
-                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                            href="${product.main_image}">
-                            <i class="fa fa-expand"></i>
-                        </a>
-                    </div>
-                </div>
-            `);
-            if (product.images && product.images.length > 0) {
-                product.images.forEach(image => {
+            if (JSON.parse(product.images) && JSON.parse(product.images).length > 0) {
+                JSON.parse(product.images).forEach(image => {
                     $('#images').append(`
-                        <div class="item-slick3" data-thumb="${image.image}">
+                        <div class="item-slick3" data-thumb="storage/${image}">
                             <div class="wrap-pic-w pos-relative">
-                                <img src="${image.image}" alt="${product.name.{{ App::getLocale() }}}">
+                                <img src="storage/${image}" alt="${product.name.{{ App::getLocale() }}}">
                                 <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                    href="${image.image}">
+                                    href="storage/${image}">
                                     <i class="fa fa-expand"></i>
                                 </a>
                             </div>

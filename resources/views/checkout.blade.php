@@ -20,7 +20,7 @@
                                     <tr class="table_row">
                                         <td class="column-1">
                                             <div class="how-itemcart1">
-                                                <img src="{{ url($item->product->main_image) }}" alt="{{ $item->product->name }}">
+                                                <img src="{{ url('storage/'.json_decode($item->product->images)[0]) }}" alt="{{ $item->product->name }}">
                                             </div>
                                         </td>
                                         <td class="column-2">

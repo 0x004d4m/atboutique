@@ -50,13 +50,14 @@
                     var product = item.product;
                     var size = item.size;
                     var color = item.color;
+                    var images = JSON.parse(product.images);
                     var itemTotal = item.quantity * item.single_product_selling_price;
                     total += itemTotal;
 
                     var cartItemHtml = `
                         <li class="header-cart-item flex-w flex-t m-b-12" data-id="${item.id}">
                             <div class="header-cart-item-img" data-id="${item.id}">
-                                <img src="${product.main_image}" alt="IMG">
+                                <img src="storage/${images[0]}" alt="IMG">
                             </div>
                             <div class="header-cart-item-txt p-t-8">
                                 <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
