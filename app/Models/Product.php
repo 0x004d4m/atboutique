@@ -60,8 +60,8 @@ class Product extends Model
                     $filename = $file->store($destination_path, $disk);
                     $newImages[] = $filename;
                     $newUploads = true;
-                } else {
-                    // Add the existing file paths that are not cleared
+                } elseif ($file) {
+                    // Add the existing file paths that are not cleared and not null
                     $newImages[] = $file;
                 }
             }
@@ -69,11 +69,14 @@ class Product extends Model
             // If there are new uploads or cleared images, merge the arrays
             if ($newUploads || !empty($clearedImages)) {
                 $allImages = array_merge($remainingImages, $newImages);
+                // Filter out any null values
+                $allImages = array_filter($allImages);
                 // Save the images array as JSON in the database
                 $this->attributes[$attribute_name] = json_encode($allImages);
             }
         } elseif (!empty($clearedImages)) {
             // If there are cleared images but no new uploads, just save the remaining images
+            $remainingImages = array_filter($remainingImages);
             $this->attributes[$attribute_name] = json_encode($remainingImages);
         }
     }
