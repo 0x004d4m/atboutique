@@ -40,8 +40,8 @@ class Product extends Model
         $disk = "public"; // Use your desired disk
         $destination_path = "uploads/images"; // Your destination path
 
-        // Get the existing images from the database
-        $existingImages = $this->attributes[$attribute_name] ? json_decode($this->attributes[$attribute_name], true) : [];
+        // Check if the attribute exists and get the existing images from the database
+        $existingImages = isset($this->attributes[$attribute_name]) ? json_decode($this->attributes[$attribute_name], true) : [];
 
         // Handle cleared images
         $clearedImages = request()->input('clear_' . $attribute_name, []);
